@@ -13,7 +13,7 @@ const IMAGE_DURATION = 10000;
 
 // Função para buscar as mídias do Supabase
 async function fetchMedia() {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
         .from('media')
         .select('*')
         .order('created_at', { ascending: true });
@@ -114,7 +114,7 @@ function showNextMedia() {
 
 // Configura evento de Realtime para atualizar a TV automaticamente
 function subscribeToChanges() {
-    supabase
+    supabaseClient
       .channel('media-changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'media' }, payload => {
           console.log('Mudança detectada no banco!', payload);
@@ -127,7 +127,7 @@ function subscribeToChanges() {
 // Sistema Anti-Pausa: Dá um ping no banco ao carregar
 async function pingDatabase() {
     try {
-        const { error } = await supabase
+        const { error } = await supabaseClient
             .from('keep_alive')
             .update({ last_ping: new Date().toISOString() })
             .eq('id', 1);

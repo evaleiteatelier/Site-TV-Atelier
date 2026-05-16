@@ -21,7 +21,7 @@ fileInput.addEventListener('change', (e) => {
 
 // Busca e exibe a galeria atual
 async function fetchGallery() {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
         .from('media')
         .select('*')
         .order('created_at', { ascending: false });
@@ -85,14 +85,14 @@ btnUpload.addEventListener('click', async () => {
 
     try {
         // 1. Upload pro Storage Bucket
-        const { error: uploadError } = await supabase.storage
+        const { error: uploadError } = await supabaseClient.storage
             .from('media_bucket')
             .upload(filePath, file);
 
         if (uploadError) throw uploadError;
 
         // 2. Pegar URL Pública
-        const { data: { publicUrl } } = supabase.storage
+        const { data: { publicUrl } } = supabaseClient.storage
             .from('media_bucket')
             .getPublicUrl(filePath);
 
@@ -100,7 +100,7 @@ btnUpload.addEventListener('click', async () => {
 
         // 3. Salvar no banco
         const isVideo = file.type.startsWith('video');
-        const { error: dbError } = await supabase
+        const { error: dbError } = await supabaseClient
             .from('media')
             .insert([
                 { 
@@ -141,7 +141,7 @@ window.deleteMedia = async (id, filePath) => {
 
     try {
         // 1. Deletar do banco primeiro (assim some da TV logo)
-        const { error: dbError } = await supabase
+        const { error: dbError } = await supabaseClient
             .from('media')
             .delete()
             .eq('id', id);
@@ -150,7 +150,7 @@ window.deleteMedia = async (id, filePath) => {
 
         // 2. Deletar arquivo do Storage
         if (filePath) {
-            const { error: storageError } = await supabase.storage
+            const { error: storageError } = await supabaseClient.storage
                 .from('media_bucket')
                 .remove([filePath]);
                 
