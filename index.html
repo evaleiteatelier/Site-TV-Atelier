@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Display - Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tv.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="loading" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Carregando Mídias...</p>
+    </div>
+
+    <div id="empty-state" class="empty-state">
+        <p>Nenhuma mídia encontrada. Adicione pelo painel.</p>
+    </div>
+
+    <div id="media-container">
+        <!-- Elementos de mídia serão injetados aqui via JS -->
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/tv-app.js"></script>
+</body>
+</html>

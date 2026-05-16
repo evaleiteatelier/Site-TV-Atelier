@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle - Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loading-text">Processando...</p>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Painel de Controle TV</h1>
+            <p>Gerencie as imagens e vídeos que aparecem na tela.</p>
+        </header>
+
+        <section class="upload-section">
+            <div class="file-input-wrapper">
+                <label for="media-upload" class="file-label">
+                    Clique para selecionar um Arquivo (Imagem ou Vídeo)
+                </label>
+                <input type="file" id="media-upload" accept="image/*,video/*">
+                <span id="file-name-display">Nenhum arquivo selecionado</span>
+            </div>
+            <button id="btn-upload" class="btn-primary" disabled>Fazer Upload e Mostrar na TV</button>
+        </section>
+
+        <section class="gallery-section">
+            <h2>Mídias Ativas na TV</h2>
+            <div id="media-grid" class="media-grid">
+                <!-- Cards renderizados dinamicamente -->
+            </div>
+        </section>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/admin-app.js"></script>
+</body>
+</html>
