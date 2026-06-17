@@ -86,3 +86,26 @@ body, html {
 .empty-state.active {
   display: block;
 }
+
+/* ===== Rotação para TV em modo retrato (vertical) ===== */
+#media-container {
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  width: 100vh;   /* largura = altura física do ecrã */
+  height: 100vw;  /* altura  = largura física do ecrã */
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+
+/* Garante que loading e empty-state também rodam */
+.loading-screen,
+.empty-state {
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  width: 100vh;
+  height: 100vw;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
