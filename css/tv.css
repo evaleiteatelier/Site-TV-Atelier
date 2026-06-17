@@ -90,11 +90,11 @@ body, html {
 /* ===== Rotação para TV em modo retrato (vertical) ===== */
 #media-container {
   position: absolute;
-  top: 0;
-  left: 100vw;
+  top: 100vh;
+  left: 0;
   width: 100vh;   /* largura = altura física do ecrã */
   height: 100vw;  /* altura  = largura física do ecrã */
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
   transform-origin: top left;
 }
 
